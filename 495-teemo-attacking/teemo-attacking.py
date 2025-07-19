@@ -3,7 +3,10 @@ class Solution:
         tol = 0
         for i in range(len(timeSeries)-1):
             j = timeSeries[i+1] - timeSeries[i]
-            m = min(duration, j)
+            if(j<duration):
+                m=j
+            else:
+                m=duration
             tol+=m
         tol+=duration
         return tol
