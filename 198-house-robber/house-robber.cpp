@@ -2,23 +2,20 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int n = nums.size();
-        vector<int>dp(n,-1);
-        return chk(n-1,nums,dp);
+        int pre = nums[0];
+        int pre2 = 0;
+        for(int i =1;i<n;i++){
+            int pick = nums[i];
+            if(i>1){
+                pick+=pre2;
+            }
+            int notpick = 0 + pre;
+            int cur = max(pick , notpick);
+            pre2 = pre;
+            pre = cur;
+        }
+        return pre;
     }
-    int chk(int i , vector<int> &nums, vector<int>&dp){
-        if(i == 0){
-            return nums[i];
-        }
-        if(i<0){
-            return 0;
-        }
-        if(dp[i]!=-1){
-            return dp[i];
-        }
-
-        int left = nums[i] + chk(i-2,nums,dp);
-        int right = 0 + chk(i-1,nums,dp);
-        return dp[i] = max(left,right);
-    }
+    
 
 };
