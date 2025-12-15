@@ -3,11 +3,16 @@ class Solution:
         nums.sort()
         n = len(nums)
         res = []
-        for i in range(n):
-            if(nums[i]>0):
-                break
+        for i in range(n-2):
             if(i>0 and nums[i]== nums[i-1]):
                 continue
+            if(nums[i]>0):
+                break
+            if nums[i] + nums[i+1] + nums[i+2] > 0:
+                break
+            if nums[i] + nums[n-2] + nums[n-1] < 0:
+                continue
+            
             left = i+1
             right = n-1
             while(left<right):
