@@ -3,34 +3,17 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        m = len(matrix)
-        n = len(matrix[0])
-        firo = False
-        fico = False
-        for j in range(n):
-            if(matrix[0][j]==0):
-                firo = True
-                break
-        for i in range(m):
-            if(matrix[i][0]==0):
-                fico=True
-                break
-        for i in range(1,m):
-            for j in range(1,n):
+        rl=len(matrix)
+        cl=len(matrix[0])
+        row=[0]*rl
+        col=[0]*cl
+        for i in range(0,rl):
+            for j in range(0,cl):
                 if(matrix[i][j]==0):
-                    matrix[i][0]=0
-                    matrix[0][j]=0
-        for i in range(1, m):
-            if(matrix[i][0]==0):
-                for j in range(1,n):
-                    matrix[i][j]=0
-        for j in range(1, n):
-            if(matrix[0][j]==0):
-                for i in range(1,m):
-                    matrix[i][j]=0
-        if(firo):
-            for j in range(n):
-                matrix[0][j]=0
-        if(fico):
-            for i in range(m):
-                matrix[i][0]=0
+                    row[i]=1
+                    col[j]=1
+        for n in range(0,rl):
+            for m in range(0,cl):
+                if (row[n]==1 or col[m]==1):
+                    matrix[n][m]=0
+                    
